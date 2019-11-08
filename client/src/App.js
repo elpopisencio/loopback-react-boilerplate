@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import {BrowserRouter, Route} from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
@@ -9,10 +10,13 @@ function App() {
     axios.get('/api/notes').then(({data}) => setNotes(data));
   }, []);
   return (
-    <div>
+    <BrowserRouter>
+      <Route path="/api" component={Api} />
       <pre>{JSON.stringify(notes, null, 2)}</pre>
-    </div>
+    </BrowserRouter>
   );
 }
 
 export default App;
+
+const Api = () => <div>API</div>;
